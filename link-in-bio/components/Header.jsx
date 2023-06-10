@@ -1,25 +1,62 @@
-import { Box,Button, Flex, Container } from '@chakra-ui/react';
-import React, { useRef, useState, useEffect } from 'react';
-
-
-import { BiDotsVerticalRounded } from "react-icons/bi";
+import { Box, Button, Flex, Icon, Image, Text } from "@chakra-ui/react"
+import React, { useState, useEffect } from "react"
+import { AiFillCheckCircle } from "react-icons/ai"
+import { BiDotsVerticalRounded } from "react-icons/bi"
 const Header = () => {
-    const [clientWindowHeight, setClientWindowHeight] = useState("");
-    const handleScroll = () => {
-        setClientWindowHeight(window.scrollY);
-    };
-    let turn = clientWindowHeight > 100;
-    useEffect(() => {
-        window.addEventListener("scroll", handleScroll); 
-        return () => window.removeEventListener("scroll", handleScroll);
-    });
-    return ( 
-        <Box  transition="ease 300ms" mt="7" width="800px"  position="fixed" padding="20px" borderRadius="full" bg={!turn ? "transparent" : "rgba(255, 255, 255, 0.5)"}  >
-            <Button _hover={!turn ? { bg: "rgb(235, 235, 235)"}: { bg: ""}} transition="ease 300ms"  ml="auto" display="flex" h="48px" bg={turn ? "black" : "white"} borderRadius="full">
-                <BiDotsVerticalRounded fill={turn ? "white" : "black"}/>
-            </Button>
-        </Box>
-    );
+  const [clientWindowHeight, setClientWindowHeight] = useState("")
+  const handleScroll = () => {
+    setClientWindowHeight(window.scrollY)
+  }
+  let turn = clientWindowHeight > 100
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  })
+
+  const leftNav = turn ? (
+    <>
+      <Image
+        borderRadius="full"
+        boxSize="48px"
+        alt="Dan Abramov image"
+        transition="ease 300ms"
+        src="https://bit.ly/dan-abramov"
+      />
+      <Flex justify="center" align="center">
+        <Text fontSize="sm" as="b">
+          @danambrow
+        </Text>
+        <Icon ml="1px" fill="#1C9BEF" boxSize={4} as={AiFillCheckCircle} />
+      </Flex>
+    </>
+  ) : (
+    <></>
+  )
+  return (
+    <Flex
+      justify="space-between"
+      transition="ease 300ms"
+      mt="7"
+      w={["300px", "400px", "800px"]}
+      position="fixed"
+      padding="15px"
+      borderRadius="full"
+      bg={!turn ? "transparent" : "rgba(255, 255, 255, 0.5)"}
+    >
+      {leftNav}
+      <Button
+        _hover={!turn ? { bg: "rgb(235, 235, 235)" } : { bg: "" }}
+        transition="ease 300ms"
+        ml={turn ? "0" : "auto"}
+        display="flex"
+        h="48px"
+        bg={turn ? "black" : "white"}
+        borderRadius="full"
+      >
+        <BiDotsVerticalRounded fill={turn ? "white" : "black"} />
+      </Button>
+    </Flex>
+  )
 }
 
-export default Header;
+export default Header
