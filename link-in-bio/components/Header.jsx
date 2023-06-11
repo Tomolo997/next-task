@@ -2,8 +2,12 @@ import { Box, Button, Flex, Icon, Image, Text } from "@chakra-ui/react"
 import React, { useState, useEffect } from "react"
 import { AiFillCheckCircle } from "react-icons/ai"
 import { BiDotsVerticalRounded } from "react-icons/bi"
-const Header = () => {
+
+const Header = ({ onToggle }) => {
   const [clientWindowHeight, setClientWindowHeight] = useState("")
+  const handleClick = () => {
+    onToggle(true) // Pass the value of isOpen to the parent component
+  }
   const handleScroll = () => {
     setClientWindowHeight(window.scrollY)
   }
@@ -20,11 +24,11 @@ const Header = () => {
         boxSize="48px"
         alt="Dan Abramov image"
         transition="ease 300ms"
-        src="https://bit.ly/dan-abramov"
+        src="https://pbs.twimg.com/profile_images/1625358790118760448/Kj-xfrfN_400x400.jpg"
       />
       <Flex justify="center" align="center">
         <Text fontSize="sm" as="b">
-          @danambrow
+          @maskobuilds
         </Text>
         <Icon ml="1px" fill="#1C9BEF" boxSize={4} as={AiFillCheckCircle} />
       </Flex>
@@ -37,11 +41,12 @@ const Header = () => {
       justify="space-between"
       transition="ease 300ms"
       mt="7"
-      w={["300px", "400px", "800px"]}
+      w={["350px", "400px", "800px"]}
       position="fixed"
       padding="15px"
       borderRadius="full"
-      bg={!turn ? "transparent" : "rgba(255, 255, 255, 0.5)"}
+      bg={!turn ? "transparent" : "rgba(255, 255, 255, 0.6)"}
+      backdropFilter={!turn ? "blur(0px)" : "blur(10px)"}
     >
       {leftNav}
       <Button
@@ -52,6 +57,7 @@ const Header = () => {
         h="48px"
         bg={turn ? "black" : "white"}
         borderRadius="full"
+        onClick={handleClick}
       >
         <BiDotsVerticalRounded fill={turn ? "white" : "black"} />
       </Button>

@@ -1,11 +1,24 @@
 import { Box, Text, Link } from "@chakra-ui/react"
-const LinkToSocial = () => {
+import { ChevronRightIcon } from "@chakra-ui/icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { useState } from "react"
+const LinkToSocial = ({ name, link }) => {
+  const [isHovering, setIsHovering] = useState(false)
+  const handleMouseOver = () => {
+    setIsHovering(true)
+  }
+
+  const handleMouseOut = () => {
+    setIsHovering(false)
+  }
   return (
     <Box
+      onMouseOver={handleMouseOver}
+      onMouseOut={handleMouseOut}
       textAlign="center"
       w="full"
       bgColor="white"
-      mt="10px"
+      mt="20px"
       mb="10px"
       borderRadius="full"
       _hover={{
@@ -19,16 +32,25 @@ const LinkToSocial = () => {
         w="full"
         h="full"
         p="15px"
-        fontSize="xl"
+        color="black"
         textDecor="none"
-        display="block"
+        display="flex"
+        justifyContent="space-between"
+        alignItems="center"
         _hover={{
           textDecor: "none",
         }}
-        href="https://chakra-ui.com"
+        href={link}
         isExternal
       >
-        Follow me
+        <Text fontSize="l" as="b">
+          {name}
+        </Text>
+        {isHovering ? (
+          <ChevronRightIcon boxSize={6} fill="white"></ChevronRightIcon>
+        ) : (
+          <></>
+        )}
       </Link>
     </Box>
   )
