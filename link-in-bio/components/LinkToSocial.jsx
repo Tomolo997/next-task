@@ -47,27 +47,29 @@ const LinkToSocial = ({ name, link, onToggle, setNewLink }) => {
       transition="0.1s  ease"
       boxShadow="rgb(0, 0, 0) 8px 8px 0px 0px"
     >
-      {name === "Twitter" ? (
-        <FaTwitter size={24}></FaTwitter>
-      ) : name === "TikTok" ? (
-        <FaTiktok size={24}></FaTiktok>
-      ) : name === "GitHub" ? (
-        <FaGithub size={24}></FaGithub>
-      ) : name === "LinkedIn" ? (
-        <FaLinkedin size={24}></FaLinkedin>
-      ) : name === "Instagram" ? (
-        <FaInstagram size={24}></FaInstagram>
-      ) : name === "YouTube" ? (
-        <FaYoutube size={24}></FaYoutube>
-      ) : name === "Discord" ? (
-        <FaDiscord size={24}></FaDiscord>
-      ) : name === "Reddit" ? (
-        <FaReddit size={24}></FaReddit>
-      ) : name === "Twitch" ? (
-        <FaTwitch size={24}></FaTwitch>
-      ) : (
-        <></>
-      )}
+      <Box ml="10px">
+        {name === "Twitter" ? (
+          <FaTwitter size={24}></FaTwitter>
+        ) : name === "TikTok" ? (
+          <FaTiktok size={24}></FaTiktok>
+        ) : name === "GitHub" ? (
+          <FaGithub size={24}></FaGithub>
+        ) : name === "LinkedIn" ? (
+          <FaLinkedin size={24}></FaLinkedin>
+        ) : name === "Instagram" ? (
+          <FaInstagram size={24}></FaInstagram>
+        ) : name === "YouTube" ? (
+          <FaYoutube size={24}></FaYoutube>
+        ) : name === "Discord" ? (
+          <FaDiscord size={24}></FaDiscord>
+        ) : name === "Reddit" ? (
+          <FaReddit size={24}></FaReddit>
+        ) : name === "Twitch" ? (
+          <FaTwitch size={24}></FaTwitch>
+        ) : (
+          <></>
+        )}
+      </Box>
       <Link
         w="85%"
         h="full"
