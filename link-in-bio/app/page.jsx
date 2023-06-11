@@ -15,7 +15,7 @@ export default async function Home({ params: { username } }) {
   console.log(socialMediaData)
   return (
     <>
-      <MainContainer data={socialMediaData} />
+      <MainContainer overflow="auto" data={socialMediaData} />
     </>
   )
 }

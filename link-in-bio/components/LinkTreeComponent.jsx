@@ -1,7 +1,14 @@
-import { Icon, Image, Flex, Text } from "@chakra-ui/react"
+import { Icon, Image, Flex, Text, Box } from "@chakra-ui/react"
 import { AiFillCheckCircle } from "react-icons/ai"
 import LinkToSocial from "./LinkToSocial"
+import { FaShareSquare } from "react-icons/fa"
+import { useBreakpointValue } from "@chakra-ui/react"
 const LinkTreeComponent = ({ socialMedia }) => {
+  const variant = useBreakpointValue({
+    base: "show",
+    sm: "dontshow",
+  })
+  let swiped = false
   return (
     <Flex
       mt="120px"
@@ -33,11 +40,13 @@ const LinkTreeComponent = ({ socialMedia }) => {
         direction="column"
       >
         {socialMedia.data.map((social) => (
-          <LinkToSocial
-            key={social.name}
-            name={social.name}
-            link={social.url}
-          ></LinkToSocial>
+          <Box w="full">
+            <LinkToSocial
+              key={social.name}
+              name={social.name}
+              link={social.url}
+            ></LinkToSocial>
+          </Box>
         ))}
       </Flex>
     </Flex>

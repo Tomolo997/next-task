@@ -38,6 +38,7 @@ const Header = ({ onToggle }) => {
   )
   return (
     <Flex
+      z-index="100"
       justify="space-between"
       transition="ease 300ms"
       mt="7"
@@ -59,7 +60,7 @@ const Header = ({ onToggle }) => {
         borderRadius="full"
         onClick={handleClick}
       >
-        <BiDotsVerticalRounded fill={turn ? "white" : "black"} />
+        <BiDotsVerticalRounded size={18} fill={turn ? "white" : "black"} />
       </Button>
     </Flex>
   )
