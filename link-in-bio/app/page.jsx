@@ -1,7 +1,7 @@
 import MainContainer from "../components/MainContainer"
-import Head from "next/head"
 async function getSocialMediaData() {
-  const res = await fetch(`http://localhost:3000/api/mock-data`, {
+  let baseurl = "http://localhost:3000"
+  const res = await fetch(`${baseurl}/api/mock-data`, {
     cache: "force-cache",
   })
   return res.json()
