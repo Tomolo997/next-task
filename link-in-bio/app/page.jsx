@@ -4,6 +4,12 @@ async function getSocialMediaData() {
   const res = await fetch(`${baseurl}/api/mock-data`, {
     cache: "force-cache",
   })
+  if (!res.ok) {
+    // Throw error or handle logic when failed to fetch exploreData here
+    console.log("Failed to fetch social media data")
+    return
+  }
+
   return res.json()
 }
 
