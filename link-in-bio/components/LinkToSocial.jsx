@@ -1,4 +1,4 @@
-import { Box, Text, Link } from "@chakra-ui/react"
+import { Box, Flex, Text, Link, useClipboard } from "@chakra-ui/react"
 import { ChevronRightIcon } from "@chakra-ui/icons"
 import {
   FaTwitter,
@@ -10,15 +10,16 @@ import {
   FaDiscord,
   FaReddit,
   FaTwitch,
+  FaShareSquare,
 } from "react-icons/fa"
-
 import { useState } from "react"
 
-const LinkToSocial = ({ name, link }) => {
-  function handleDrag() {
-    console.log("Dragging...")
-  }
+const LinkToSocial = ({ name, link, onToggle, setNewLink }) => {
   const [isHovering, setIsHovering] = useState(false)
+  const handleClick = (link) => {
+    onToggle(true)
+    setNewLink(link)
+  }
   const handleMouseOver = () => {
     setIsHovering(true)
   }
@@ -27,16 +28,16 @@ const LinkToSocial = ({ name, link }) => {
     setIsHovering(false)
   }
   return (
-    <Box
+    <Flex
       onMouseOver={handleMouseOver}
       onMouseOut={handleMouseOut}
-      textAlign="center"
       w="full"
+      justify="center"
+      align="center"
       bgColor="white"
       h="60px"
+      border="2px solid black"
       mt="10px"
-      draggable
-      onDrag={handleDrag}
       mb="10px"
       borderRadius="full"
       _hover={{
@@ -46,14 +47,35 @@ const LinkToSocial = ({ name, link }) => {
       transition="0.1s  ease"
       boxShadow="rgb(0, 0, 0) 8px 8px 0px 0px"
     >
+      {name === "Twitter" ? (
+        <FaTwitter size={24}></FaTwitter>
+      ) : name === "TikTok" ? (
+        <FaTiktok size={24}></FaTiktok>
+      ) : name === "GitHub" ? (
+        <FaGithub size={24}></FaGithub>
+      ) : name === "LinkedIn" ? (
+        <FaLinkedin size={24}></FaLinkedin>
+      ) : name === "Instagram" ? (
+        <FaInstagram size={24}></FaInstagram>
+      ) : name === "YouTube" ? (
+        <FaYoutube size={24}></FaYoutube>
+      ) : name === "Discord" ? (
+        <FaDiscord size={24}></FaDiscord>
+      ) : name === "Reddit" ? (
+        <FaReddit size={24}></FaReddit>
+      ) : name === "Twitch" ? (
+        <FaTwitch size={24}></FaTwitch>
+      ) : (
+        <></>
+      )}
       <Link
-        w="full"
+        w="85%"
         h="full"
         p="15px"
         color="black"
         textDecor="none"
         display="flex"
-        justifyContent="space-between"
+        justifyContent="center"
         alignItems="center"
         _hover={{
           textDecor: "none",
@@ -61,37 +83,25 @@ const LinkToSocial = ({ name, link }) => {
         href={link}
         isExternal
       >
-        {name === "Twitter" ? (
-          <FaTwitter size={24}></FaTwitter>
-        ) : name === "TikTok" ? (
-          <FaTiktok size={24}></FaTiktok>
-        ) : name === "GitHub" ? (
-          <FaGithub size={24}></FaGithub>
-        ) : name === "LinkedIn" ? (
-          <FaLinkedin size={24}></FaLinkedin>
-        ) : name === "Instagram" ? (
-          <FaInstagram size={24}></FaInstagram>
-        ) : name === "YouTube" ? (
-          <FaYoutube size={24}></FaYoutube>
-        ) : name === "Discord" ? (
-          <FaDiscord size={24}></FaDiscord>
-        ) : name === "Reddit" ? (
-          <FaReddit size={24}></FaReddit>
-        ) : name === "Twitch" ? (
-          <FaTwitch size={24}></FaTwitch>
-        ) : (
-          <></>
-        )}
         <Text fontSize="l" as="b">
           {name}
         </Text>
-
-        <ChevronRightIcon
-          boxSize={6}
-          color={isHovering ? "black" : "white"}
-        ></ChevronRightIcon>
       </Link>
-    </Box>
+      <Flex
+        cursor="pointer"
+        onClick={() => {
+          handleClick(link)
+        }}
+        justify="center"
+        align="center"
+        w="30px"
+        h="30px"
+        borderRadius="full"
+        backgroundColor={!isHovering ? "white" : "rgb(224, 226, 217)"}
+      >
+        <FaShareSquare color={!isHovering ? "white" : "black"}></FaShareSquare>
+      </Flex>
+    </Flex>
   )
 }
 

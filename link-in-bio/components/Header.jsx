@@ -3,10 +3,11 @@ import React, { useState, useEffect } from "react"
 import { AiFillCheckCircle } from "react-icons/ai"
 import { BiDotsVerticalRounded } from "react-icons/bi"
 
-const Header = ({ onToggle }) => {
+const Header = ({ onToggle, setNewLink, username }) => {
   const [clientWindowHeight, setClientWindowHeight] = useState("")
-  const handleClick = () => {
+  const handleClick = (link) => {
     onToggle(true) // Pass the value of isOpen to the parent component
+    setNewLink(link)
   }
   const handleScroll = () => {
     setClientWindowHeight(window.scrollY)
@@ -28,7 +29,7 @@ const Header = ({ onToggle }) => {
       />
       <Flex justify="center" align="center">
         <Text fontSize="sm" as="b">
-          @maskobuilds
+          @{username}
         </Text>
         <Icon ml="1px" fill="#1C9BEF" boxSize={4} as={AiFillCheckCircle} />
       </Flex>
@@ -58,7 +59,9 @@ const Header = ({ onToggle }) => {
         h="48px"
         bg={turn ? "black" : "white"}
         borderRadius="full"
-        onClick={handleClick}
+        onClick={() => {
+          handleClick("linktr.ee/maskobuilds")
+        }}
       >
         <BiDotsVerticalRounded size={18} fill={turn ? "white" : "black"} />
       </Button>

@@ -12,5 +12,15 @@ export default function handler(req, res) {
     { name: "Discord", url: "https://discord.gg/3Y5Jz2Q" },
     { name: "Reddit", url: "https://www.reddit.com/user/Tomolo997" },
   ]
-  return res.status(200).json({ data: social_media })
+  let user = {
+    username: "maskobuilds",
+    name: "Tomolo",
+    bio: "I am a software engineer and content creator. I love to build things and share my knowledge with others.",
+  }
+
+  let data = {
+    user: user,
+    social_media: social_media,
+  }
+  return res.status(200).json({ data: data })
 }

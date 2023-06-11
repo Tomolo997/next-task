@@ -6,6 +6,7 @@ import { ChevronRightIcon } from "@chakra-ui/icons"
 import {
   Box,
   Text,
+  Link,
   useDisclosure,
   Modal,
   ModalOverlay,
@@ -33,10 +34,14 @@ import { useState } from "react"
 const MainContaier = ({ data }) => {
   const { onCopy, value, setValue, hasCopied } = useClipboard("")
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const [shareLink, setshareLink] = useState("")
+  const [shareLink, setShareLink] = useState("")
 
   const handleToggle = (isOpenValue) => {
     onOpen(isOpenValue) // Update the isOpen state in the parent component
+  }
+  const setNewLink = (link) => {
+    setShareLink(link)
+    setValue(link)
   }
   return (
     <>
@@ -49,8 +54,16 @@ const MainContaier = ({ data }) => {
         justifyContent="space-between"
         background="linear-gradient(rgb(255, 206, 3), rgb(255, 92, 23))"
       >
-        <Header onToggle={handleToggle} />
-        <LinkTreeComponent socialMedia={data} />
+        <Header
+          username={data.data.user.username}
+          setNewLink={setNewLink}
+          onToggle={handleToggle}
+        />
+        <LinkTreeComponent
+          setNewLink={setNewLink}
+          onToggle={handleToggle}
+          data={data}
+        />
         <Footer />
       </Box>
       <Modal size="sm" isOpen={isOpen} onClose={onClose} isCentered>
@@ -62,7 +75,7 @@ const MainContaier = ({ data }) => {
           <ModalCloseButton />
           <ModalBody>
             <Flex direction="column">
-              {data.data.map((social) => (
+              {data.data.social_media.map((social) => (
                 <Button
                   h="60px"
                   backgroundColor="white"
@@ -107,16 +120,12 @@ const MainContaier = ({ data }) => {
                 _hover={{
                   backgroundColor: "rgb(224, 226, 217)",
                 }}
-                value={value}
-                onChange={(e) => {
-                  setValue("linktr.ee/maskobuilds")
-                }}
               >
                 <Flex w="full" justify="space-between">
                   <FaExternalLinkAlt size={18}></FaExternalLinkAlt>
-                  <Text fontSize="sm" ml="10px" mr="auto">
-                    linktr.ee/maskobuilds
-                  </Text>
+                  <Link href={shareLink} fontSize="sm" ml="10px" mr="auto">
+                    Share link
+                  </Link>
                   <Text onClick={onCopy}>{hasCopied ? "Copied!" : "Copy"}</Text>
                 </Flex>
               </Button>
