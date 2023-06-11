@@ -1,6 +1,6 @@
 import MainContainer from "../components/MainContainer"
 async function getSocialMediaData() {
-  let baseurl = "http://localhost:3000"
+  let baseurl = "https://next-task-sigma.vercel.app/"
   const res = await fetch(`${baseurl}/api/mock-data`, {
     cache: "force-cache",
   })
