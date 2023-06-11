@@ -1,7 +1,7 @@
 import MainContainer from "../components/MainContainer"
 async function getSocialMediaData() {
-  let baseurl = "https://next-task-git-main-tomolo997.vercel.app/"
-  const res = await fetch(`${baseurl}/api/mock-data`, {
+  let baseurl = "http://localhost:3000"
+  const res = await fetch(`api/mock-data`, {
     cache: "force-cache",
   })
   return res.json()
