@@ -99,6 +99,7 @@ const LinkToSocial = ({ name, link, onToggle, setNewLink }) => {
         w="30px"
         h="30px"
         borderRadius="full"
+        mr="10px"
         backgroundColor={!isHovering ? "white" : "rgb(224, 226, 217)"}
       >
         <FaShareSquare color={!isHovering ? "white" : "black"}></FaShareSquare>
